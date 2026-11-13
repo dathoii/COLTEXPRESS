@@ -1,0 +1,39 @@
+appId: com.coltexpressonline.host
+productName: Colt Express Online Host
+copyright: Copyright © 2026 Colt Express Online
+directories:
+  output: dist-installer
+asar: true
+npmRebuild: false
+nodeGypRebuild: false
+files:
+  - package.json
+  - desktop-host/**/*
+  - "!**/node_modules/**"
+extraResources:
+  - from: release/server
+    to: server
+  - from: release/client
+    to: client
+  - from: assets
+    to: assets
+  - from: bin
+    to: bin
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: assets/icons/colt-express.ico
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Colt Express Online Host
+  installerIcon: assets/icons/colt-express.ico
+  uninstallerIcon: assets/icons/colt-express.ico
+  artifactName: ColtExpressOnline-Setup.exe
+  runAfterFinish: true
+  deleteAppDataOnUninstall: false

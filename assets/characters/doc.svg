@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Doc">
+  <rect width="128" height="128" rx="18" fill="#224d78" stroke="#e6c265" stroke-width="6"/>
+  <circle cx="64" cy="54" r="24" fill="#e0b594" stroke="#1b120c" stroke-width="3"/>
+  <path d="M32,42 Q64,48 96,42 Q64,34 32,42 Z" fill="#1d1815"/>
+  <path d="M44,40 L50,20 L78,20 L84,40 Z" fill="#1d1815"/>
+  <rect x="46" y="34" width="36" height="4" fill="#e6c265"/>
+  <path d="M26,118 C26,88 102,88 102,118 Z" fill="#e6c265" stroke="#1b120c" stroke-width="3"/>
+  <text x="64" y="114" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#18120c">Doc</text>
+</svg>

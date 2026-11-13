@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="move">
+  <rect x="3" y="3" width="94" height="134" rx="10" fill="#f3e7d3" stroke="#6e5239" stroke-width="4"/>
+  <rect x="10" y="10" width="80" height="120" rx="6" fill="none" stroke="#b8843b" stroke-width="2"/>
+  <circle cx="50" cy="64" r="24" fill="#2b2017" stroke="#e0a94f" stroke-width="3"/>
+  <text x="50" y="114" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="bold" fill="#2b2017">MOVE</text>
+</svg>

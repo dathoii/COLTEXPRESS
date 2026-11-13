@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "theme": "Union Pacific Express 1899",
+  "assets": {
+    "characters": [
+      "assets/characters/django.svg",
+      "assets/characters/tuco.svg",
+      "assets/characters/doc.svg",
+      "assets/characters/cheyenne.svg",
+      "assets/characters/ghost.svg",
+      "assets/characters/belle.svg",
+      "assets/characters/marshal.svg"
+    ],
+    "cards": [
+      "assets/cards/move.svg",
+      "assets/cards/changeFloor.svg",
+      "assets/cards/shoot.svg",
+      "assets/cards/punch.svg",
+      "assets/cards/rob.svg",
+      "assets/cards/marshal.svg",
+      "assets/cards/bullet.svg",
+      "assets/cards/neutralBullet.svg"
+    ],
+    "loot": [
+      "assets/loot/purse.svg",
+      "assets/loot/jewel.svg",
+      "assets/loot/strongbox.svg"
+    ],
+    "train": [
+      "assets/train/locomotive.svg",
+      "assets/train/passenger-car.svg"
+    ],
+    "icons": [
+      "assets/icons/colt-express.png",
+      "assets/icons/colt-express.ico"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "colt-express-online",
+  "version": "0.1.0",
+  "description": "Colt Express Online Multiplayer Board Game & Windows Host Server",
+  "author": "Colt Express Online",
+  "main": "desktop-host/electron-main.cjs",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "shared",
+    "game-rules",
+    "game-engine",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:server": "npm run dev -w @colt/server",
+    "dev:client": "npm run dev -w @colt/client",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p client/tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "npm run build -w @colt/client && npm run build -w @colt/server",
+    "start": "node release/server/server.mjs",
+    "smoke": "npx tsx scripts/smoke-test.mjs",
+    "dist:win": "node scripts/build-installer.mjs",
+    "verify": "npm run typecheck && npm run build && npm run test && npm run smoke"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "electron": "^45.3.1",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

@@ -1,0 +1,19 @@
+# Dependencies & caches
+node_modules/
+npm-debug.log*
+.vite/
+
+# Build outputs & packaged Windows installer (>100MB, rebuilt automatically in cloud)
+release/
+dist-installer/
+*.exe
+*.blockmap
+
+# Windows-only tunnel binaries & local runtime data
+bin/*.exe
+data/
+*.db
+*.db-shm
+*.db-wal
+.env
+.env.local

@@ -1,0 +1,240 @@
+/* Isolated CSS scope for Screen 3: Tạo Phòng Riêng Tư (Invite-Only) */
+.screen-create {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px 26px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #140d09;
+}
+
+.create-saloon-bg {
+  position: absolute;
+  inset: 0;
+  background: url('/art/bg-saloon.webp') center center / cover no-repeat;
+  opacity: 0.84;
+  filter: saturate(1.08);
+  pointer-events: none;
+}
+
+.create-saloon-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(28, 16, 10, 0.16) 0%, rgba(10, 6, 4, 0.78) 85%);
+  pointer-events: none;
+}
+
+.create-dialog-frame {
+  position: relative;
+  z-index: 2;
+  width: min(980px, 92vw);
+  padding: 40px 44px 34px;
+  border-radius: 16px;
+  border: 3px solid #6b5e52;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(186, 110, 36, 0.14), transparent 55%),
+    linear-gradient(180deg, rgba(38, 24, 16, 0.96) 0%, rgba(22, 14, 10, 0.98) 100%);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.85),
+    inset 0 0 0 2px #261912,
+    inset 0 0 0 4px rgba(176, 140, 88, 0.35),
+    inset 0 1px 0 rgba(255, 224, 168, 0.25);
+}
+
+.create-top-crest {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #4b4238, #27201a);
+  border: 2px solid #968773;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+.create-crest-wing {
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d9aa56, transparent);
+}
+
+.create-crest-medal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffe58e, #b87b22);
+  color: #362107;
+  font-size: 0.85rem;
+  font-weight: 900;
+  border: 1.5px solid #fff0b8;
+}
+
+.create-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(212, 165, 92, 0.45);
+  pointer-events: none;
+}
+
+.create-corner.c-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-top-left-radius: 5px; }
+.create-corner.c-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-top-right-radius: 5px; }
+.create-corner.c-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-bottom-left-radius: 5px; }
+.create-corner.c-br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-bottom-right-radius: 5px; }
+
+.create-title {
+  margin: 0 0 24px 0;
+  text-align: center;
+  font-family: 'Cambria', 'Times New Roman', 'Palatino Linotype', serif;
+  font-size: clamp(1.55rem, 2.6vw, 2.25rem);
+  font-weight: 800;
+  color: #ffbd4f;
+  text-shadow:
+    0 2px 0 #592607,
+    0 4px 14px rgba(0, 0, 0, 0.92),
+    0 0 24px rgba(255, 138, 30, 0.56);
+}
+
+.create-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+  margin-bottom: 26px;
+}
+
+.create-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.create-label {
+  color: #eedbc0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding-left: 6px;
+}
+
+.create-input-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 2px solid #756b5e;
+  background: linear-gradient(180deg, #322116 0%, #1d130d 100%);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.72),
+    inset 0 1px 0 rgba(255, 200, 118, 0.25),
+    0 2px 6px rgba(0, 0, 0, 0.45);
+  padding: 0 16px;
+}
+
+.create-input-shell:focus-within {
+  border-color: #f0b84e;
+  box-shadow:
+    0 0 12px rgba(240, 184, 78, 0.35),
+    inset 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.create-rivet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a59886;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.create-input-shell input,
+.create-input-shell select {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #f6ead6;
+  padding: 10px 6px;
+  font-size: 0.9rem;
+  box-shadow: none;
+}
+
+.create-input-shell input:focus,
+.create-input-shell select:focus {
+  outline: none;
+}
+
+.create-actions-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.screen-create .create-btn-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 28px;
+  border-radius: 10px;
+  border: 2px solid #ffe49c;
+  background: linear-gradient(180deg, #eeb046 0%, #bf7820 65%, #995811 100%);
+  color: #fff6e0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+  box-shadow:
+    0 0 20px rgba(242, 174, 58, 0.45),
+    0 5px 14px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 250, 224, 0.6);
+}
+
+.screen-create .create-btn-back {
+  padding: 11px 24px;
+  border-radius: 10px;
+  border: 2px solid #8a7357;
+  background: linear-gradient(180deg, #4b392b 0%, #2a1e16 100%);
+  color: #f2e1c7;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .create-dialog-frame {
+    padding: 28px 20px 22px;
+  }
+  .create-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+
+.create-field-span {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  .create-dialog-frame {
+    padding: 18px 14px 20px;
+  }
+
+  .create-input-shell input,
+  .create-input-shell select,
+  .create-btn-launch,
+  .create-btn-back {
+    min-height: 44px;
+  }
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:;"
+    />
+    <title>Colt Express Online — Windows Host Server</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <header class="host-header">
+      <div class="brand">
+        <span class="badge-star">★</span>
+        <div>
+          <h1 data-i18n="headerTitle">Colt Express Online — Windows Host</h1>
+          <p class="subtitle" data-i18n="headerSubtitle">Authoritative Server • LAN &amp; Internet Tunnel • Invite-Only (3–6 Người)</p>
+        </div>
+      </div>
+
+      <div class="server-controls">
+        <button id="btn-lang" class="btn ghost small-btn" type="button">🇻🇳 VI | EN</button>
+        <label class="port-field">
+          <span data-i18n="portLabel">Port</span>
+          <input id="port-input" type="number" min="1024" max="65535" value="3001" />
+        </label>
+        <button id="btn-start" class="btn primary" data-i18n="btnStart">Start Server</button>
+        <button id="btn-restart" class="btn secondary" data-i18n="btnRestart">Restart Server</button>
+        <button id="btn-stop" class="btn danger" data-i18n="btnStop">Stop Server</button>
+        <button id="btn-open-lobby" class="btn ghost" data-i18n="btnOpenLobby">Mở Cửa Sổ Game</button>
+      </div>
+    </header>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <main class="dashboard-grid">
+      <!-- SERVER STATUS & NETWORK STATUS -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2 data-i18n="panelStatus">Server Status &amp; Dữ Liệu</h2>
+          <span id="status-pill" class="pill stopped">STOPPED</span>
+        </div>
+
+        <dl class="kv-grid">
+          <dt data-i18n="kvStateLabel">Trạng thái</dt>
+          <dd id="kv-state">—</dd>
+          <dt data-i18n="kvListenLabel">Địa chỉ lắng nghe</dt>
+          <dd id="kv-listen">—</dd>
+          <dt data-i18n="kvUptimeLabel">Thời gian chạy</dt>
+          <dd id="kv-uptime">—</dd>
+          <dt data-i18n="kvGamesLabel">Ván đã hoàn tất</dt>
+          <dd id="kv-games">0</dd>
+          <dt>SQLite DB</dt>
+          <dd id="kv-db" class="mono small">—</dd>
+        </dl>
+
+        <div class="action-row">
+          <button id="btn-backup" class="btn secondary" data-i18n="btnBackup">Backup Dữ Liệu</button>
+          <button id="btn-restore" class="btn secondary" data-i18n="btnRestore">Restore Bản Lưu</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2 data-i18n="panelNetwork">Network Status (LAN &amp; Internet)</h2>
+          <span id="tunnel-pill" class="pill idle">TUNNEL IDLE</span>
+        </div>
+
+        <div class="sub-block">
+          <h3 data-i18n="lanHeading">Mạng LAN (Cùng Wi-Fi / Router)</h3>
+          <ul id="lan-list" class="link-list">
+            <li class="muted" data-i18n="waitingServer">Đang chờ server khởi động...</li>
+          </ul>
+        </div>
+
+        <div class="sub-block">
+          <div class="row-between">
+            <h3 data-i18n="tunnelHeading">Internet Miễn Phí (Cloudflare Quick Tunnel)</h3>
+            <span id="cloudflared-badge" class="badge">Checking...</span>
+          </div>
+          <div id="tunnel-url-box" class="tunnel-box muted" data-i18n="tunnelIdleDefault">
+            Chưa bật Tunnel. Không cần VPS, domain hay thẻ tín dụng.
+          </div>
+          <div class="action-row">
+            <button id="btn-tunnel-start" class="btn primary" data-i18n="btnTunnelStart">Bật Quick Tunnel</button>
+            <button id="btn-tunnel-stop" class="btn danger" data-i18n="btnTunnelStop">Tắt Tunnel</button>
+            <button id="btn-tunnel-copy" class="btn ghost" data-i18n="btnTunnelCopy">Copy Link Internet</button>
+            <button id="btn-tunnel-refresh" class="btn ghost" data-i18n="btnTunnelRefresh">Kiểm tra lại</button>
+          </div>
+          <p id="tunnel-hint" class="hint-text">
+            <span data-i18n="tunnelHintLead">Lưu ý CGNAT &amp; Firewall: Quick Tunnel không cần mở port router nhưng yêu cầu có tệp</span>
+            <code class="mono">cloudflared.exe</code> <span data-i18n="tunnelHintMid">trong PATH hoặc thư mục</span>
+            <code id="bin-dir" class="mono">bin</code>. <span data-i18n="tunnelHintEnd">Link Quick Tunnel là tạm thời cho mỗi phiên.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- CREATE ROOM -->
+      <section class="panel span-2">
+        <div class="panel-head">
+          <h2 data-i18n="panelCreateRoom">Tạo Phòng Chơi Mới (Invite-Only • 3–6 Người)</h2>
+        </div>
+        <form id="create-room-form" class="create-form">
+          <label>
+            <span data-i18n="hostModeLabel">Chế độ Host</span>
+            <select id="host-mode">
+              <option value="player" data-i18n="optHostPlayer">Host Player (Host vừa chạy server vừa chơi)</option>
+              <option value="dedicated" data-i18n="optDedicated">Dedicated Server (Host chỉ điều hành, không chiếm chỗ)</option>
+            </select>
+          </label>
+          <label id="player-name-wrap">
+            <span data-i18n="playerNameLabel">Tên Người Chơi (Host)</span>
+            <input id="host-player-name" type="text" maxlength="24" value="Host Sheriff" />
+          </label>
+          <label>
+            <span data-i18n="roomNameLabel">Tên Phòng</span>
+            <input id="room-name" type="text" maxlength="40" value="Union Pacific Express" />
+          </label>
+          <label>
+            <span data-i18n="roomPwdLabel">Mật khẩu (tùy chọn)</span>
+            <input id="room-password" type="password" maxlength="32" placeholder="Để trống nếu dùng mã mời" data-i18n-placeholder="roomPwdPlaceholder" />
+          </label>
+          <div class="form-submit">
+            <button type="submit" class="btn primary" data-i18n="btnCreateRoom">Tạo Phòng</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ACTIVE ROOMS: PLAYER LIST, SPECTATOR LIST, INVITE LINKS -->
+      <section class="panel span-2">
+        <div class="panel-head">
+          <h2 data-i18n="panelRooms">Danh Sách Phòng, Người Chơi &amp; Khán Giả</h2>
+          <span id="room-count-badge" class="badge">0 phòng</span>
+        </div>
+        <div id="rooms-container" class="rooms-list">
+          <div class="empty-box" data-i18n="emptyRoomsDefault">Chưa có phòng nào. Tạo phòng mới ở trên hoặc mở cửa sổ game để tạo.</div>
+        </div>
+      </section>
+
+      <!-- SERVER LOGS -->
+      <section class="panel span-2">
+        <div class="panel-head">
+          <h2 data-i18n="panelLogs">Server Logs (Thời gian thực)</h2>
+          <button id="btn-clear-logs" class="btn ghost small-btn" data-i18n="btnClearLogs">Xóa hiển thị</button>
+        </div>
+        <pre id="logs-box" class="logs-box">Đang khởi động bảng điều khiển...</pre>
+      </section>
+    </main>
+
+    <script src="./dashboard.js"></script>
+  </body>
+</html>
